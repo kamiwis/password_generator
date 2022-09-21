@@ -12,30 +12,28 @@ def main():
   num_letters = int(input("How many letters would you like your password to have?\n"))
   num_numbers = int(input("How many numbers would you like your password to have?\n"))
   num_symbols = int(input("How many symbols would you like your password to have?\n"))
+  shuffle = input("Do you want your password shuffled? 'Y' or 'N'\n")
 
-  # Initialize password string. We will add to this as we pick random itesm from letters, numbers, and symbols.
-  password = ""
+  # Initialize password list. We will add to this as we pick random items from letters, numbers, and symbols.
+  password = []
 
   # Concatenate user-specified number of letters to the password string.
   for i in range(num_letters):
-    password += random.choice(letters)
+    password.append(random.choice(letters))
   
   # Concatenate user-specified number of symbols to the password string.
-  for i in range(num_numbers):
-    password += random.choice(numbers)
+  for i in range(num_symbols):
+    password.append(random.choice(symbols))
   
   # Concatenate user-specified number of numbers to the password string.
-  for i in range(num_symbols):
-    password += random.choice(symbols)
+  for i in range(num_numbers):
+    password.append(random.choice(numbers))
+
+  # If user wants a shuffled password, convert password to list, shuffle, and convert back to a string.
+  if shuffle == 'Y':
+    random.shuffle(password)
   
-  print(password)
-
-
-
-
-
-
-
+  print("".join(password))
 
 if __name__ == "__main__":
   main()
